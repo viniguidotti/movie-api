@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
-import { Movies, Result } from 'interfaces/movies';
+import { Movies, Result } from 'src/interfaces/movies';
 dotenv.config();
 
 const theMovieApiURL = process.env.THE_MOVIE_API;

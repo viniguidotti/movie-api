@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import moviesService from '../services';
-import { Movies, Result } from 'interfaces/movies';
+import { Movies, Result } from 'src/interfaces/movies';
 
 const router = express.Router();
 

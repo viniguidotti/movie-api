@@ -17,7 +17,7 @@ A Node.js API using TypeScript that consumes data from [The Movie Database (TMDb
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/movies-api.git
+   git clone https://github.com/viniguidotti/movie-api.git
    cd movies-api
    ```
 
@@ -58,10 +58,10 @@ npm run test:coverage
 ```
 src/
 ├── controllers/
+├── interfaces/
+├── mocks/
 ├── services/
-├── routes/
 ├── index.ts
-mocks/
 .env
 ```
 

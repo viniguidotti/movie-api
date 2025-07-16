@@ -4,7 +4,7 @@ import {
   getMovieByIdMock,
   getMovieByTextMock,
   mockMovie,
-} from '../../mocks/movieMock';
+} from '../mocks/movieMock';
 
 jest.mock('../services', () => ({
   getMovies: () => getMoviesMock(),
