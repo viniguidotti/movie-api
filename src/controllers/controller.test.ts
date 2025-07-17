@@ -8,7 +8,7 @@ const mockMoviesService = {
   getMovieByText: jest.fn(),
 };
 
-jest.mock('../../mocks/movieMock', () => mockMoviesService);
+jest.mock('../mocks/movieMock', () => mockMoviesService);
 
 const app = express();
 app.use(express.json());
