@@ -32,6 +32,42 @@ router.get('/movies/:id', async (request: Request, response: Response) => {
     }
 })
 
+router.get('/movies/:id/credits', async (request: Request, response: Response) => {
+    try {
+        const { id } = request.params;
+
+        if (isNaN(Number(id))) {
+            return response.status(400).json({ error: 'Invalid movie ID format' });
+        }
+
+        const credits = await moviesService.getMovieCreditsById(id);
+        return response.status(200).json(credits);
+    } catch (error) {
+        console.log('error :>> ', error);
+        if ((error as any)?.response.status === 404) {
+            return response.status(404).json({ error: 'Credits not found' });
+        }
+    }
+})
+
+router.get('/movies/:id', async (request: Request, response: Response) => {
+    try {
+        const { id } = request.params;
+
+        if (isNaN(Number(id))) {
+            return response.status(400).json({ error: 'Invalid movie ID format' });
+        }
+
+        const movie = await moviesService.getMovieById(id) as Result;
+        return response.status(200).json(movie);
+    } catch (error) {
+        console.log('error :>> ', error);
+        if ((error as any)?.response.status === 404) {
+            return response.status(404).json({ error: 'Movie not found' });
+        }
+    }
+})
+
 router.get('/search/movie', async (request: Request, response: Response) => {
     try {
         const { text } = request.query;

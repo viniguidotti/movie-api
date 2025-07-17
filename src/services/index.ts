@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
+import { Credits } from 'src/interfaces/credits';
 import { Movies, Result } from 'src/interfaces/movies';
 dotenv.config();
 
@@ -42,6 +43,24 @@ const movieService = {
       );
 
       return response.data as Result;
+    } catch (error: any) {
+      throw error;
+    }
+  },
+
+  async getMovieCreditsById(id: string) {
+    try {
+      const response = await axios.get(
+        `${theMovieApiURL}movie/${id}/credits?language=en-US`,
+        {
+          headers: {
+            Authorization: `Bearer ${theMovieToken}`,
+            Accept: 'application/json',
+          },
+        }
+      );
+
+      return response.data as Credits;
     } catch (error: any) {
       throw error;
     }

@@ -6,6 +6,7 @@ const mockMoviesService = {
   getMovies: jest.fn(),
   getMovieById: jest.fn(),
   getMovieByText: jest.fn(),
+  getMovieCreditsById: jest.fn(),
 };
 
 jest.mock('../mocks/movieMock', () => mockMoviesService);
@@ -42,6 +43,31 @@ describe('Movies routes', () => {
 
     it('should return 200 and the movie if found', async () => {
       const res = await request(app).get('/movies/1087192');
+
+      expect(res.status).toBe(200);
+      expect(res.body).toEqual(res.body);
+    });
+
+    it('should return 404 and the movie if not found', async () => {
+      mockMoviesService.getMovies.mockResolvedValueOnce(null);
+
+      const res = await request(app).get('/movies/123456789');
+
+      expect(res.status).toBe(404);
+      expect(res.body).toEqual({ error: 'Movie not found' });
+    });
+  });
+
+    describe('GET /movies/:id/credits', () => {
+    it('should return 400 if id is invalid', async () => {
+      const res = await request(app).get('/movies/okaok/credits');
+
+      expect(res.status).toBe(400);
+      expect(res.body).toEqual({ error: 'Invalid movie ID format' });
+    });
+
+    it('should return 200 and the movie if found', async () => {
+      const res = await request(app).get('/movies/1087192/credits');
 
       expect(res.status).toBe(200);
       expect(res.body).toEqual(res.body);

@@ -14,7 +14,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use(cors({
-    origin: ['http://localhost:4300']
+    origin: ['http://localhost:4200']
 }))
 
 app.use(bodyParser.json());

@@ -4,12 +4,15 @@ import {
   getMovieByIdMock,
   getMovieByTextMock,
   mockMovie,
+  getMovieCreditsByIdMock,
+  mockMovieCredits
 } from '../mocks/movieMock';
 
 jest.mock('../services', () => ({
   getMovies: () => getMoviesMock(),
   getMovieById: (id: string) => getMovieByIdMock(id),
   getMovieByText: (text: string) => getMovieByTextMock(text),
+  getMovieCreditsById: (id: string) => getMovieCreditsByIdMock(id),
 }));
 
 describe('Movie Service', () => {
@@ -21,6 +24,11 @@ describe('Movie Service', () => {
   it('should return movie by id', async () => {
     const movie = await moviesService.getMovieById('1087192');
     expect(movie).toEqual(mockMovie);
+  });
+
+  it('should return movie credits by id', async () => {
+    const credits = await moviesService.getMovieCreditsById('1087192');
+    expect(credits).toEqual(mockMovieCredits);
   });
 
   it('should return movie by search text', async () => {
